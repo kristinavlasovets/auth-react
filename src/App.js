@@ -1,25 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import TextField from '@mui/material/TextField';
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <TextField id="standard-basic" label="Username" variant="standard" />
+      <TextField id="standard-basic" label="Email" variant="standard" />
+      <TextField id="standard-basic" label="Password" variant="standard" />
     </div>
   );
-}
-
-export default App;
+};
