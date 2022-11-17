@@ -6,21 +6,11 @@ export const App = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const submitValue = () => {
-		const reqData = {
-			username,
-			email,
-			password,
-		};
-		console.log(reqData);
-		return reqData;
-	};
-
 	const postUsers = async () => {
 		const response = await fetch('http://localhost:5000/auth/registration', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(),
+			body: JSON.stringify({username, email, password}),
 		});
 		const result = await response.json();
 		console.log(result);
@@ -45,21 +35,24 @@ export const App = () => {
 			>
 				<TextField
 					onChange={(e) => setUsername(e.target.value)}
+					type="text"
 					label="Username"
 					variant="standard"
 				/>
 				<TextField
+					type="email"
 					onChange={(e) => setEmail(e.target.value)}
 					label="Email"
 					variant="standard"
 				/>
 				<TextField
+					type="password"
 					onChange={(e) => setPassword(e.target.value)}
 					label="Password"
 					variant="standard"
 				/>
 				<Button
-					onClick={submitValue}
+					onClick={postUsers}
 					sx={{width: '150px', margin: '30px auto'}}
 					variant="contained"
 				>
