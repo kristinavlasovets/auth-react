@@ -12,7 +12,9 @@ export const AuthForm = ({setIsAuth}) => {
 			body: JSON.stringify({email, password}),
 		});
 		const result = await response.json();
-		setIsAuth(result);
+		setIsAuth((prev) => (prev = true));
+		localStorage.setItem('token', result.token);
+		console.log(result);
 	};
 
 	return (
@@ -30,6 +32,7 @@ export const AuthForm = ({setIsAuth}) => {
 			/>
 			<TextField
 				onChange={(e) => setPassword(e.target.value)}
+				type="password"
 				label="Password"
 				variant="standard"
 			/>

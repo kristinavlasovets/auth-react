@@ -13,7 +13,6 @@ export const RegForm = () => {
 			body: JSON.stringify({username, email, password}),
 		});
 		const result = await response.json();
-		console.log(result);
 		return result;
 	};
 	return (

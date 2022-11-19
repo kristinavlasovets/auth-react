@@ -1,14 +1,24 @@
-import {React, useState} from 'react';
+import {React, useEffect, useState} from 'react';
 import {Box, Divider} from '@mui/material';
 import {RegForm} from './components/RegForm';
 import {AuthForm} from './components/AuthForm';
 import {List} from './components/List';
 
 export const App = () => {
-	const [isAuth, setIsAuth] = useState({});
+	const [isAuth, setIsAuth] = useState(false);
+
+	const handleAuth = () => {
+		setIsAuth((prev) => !prev);
+	};
+
+	useEffect(() => {
+		if (localStorage.getItem('token')) {
+			setIsAuth(true);
+		}
+	}, []);
 
 	return isAuth ? (
-		<List />
+		<List setIsAuth={handleAuth} />
 	) : (
 		<Box
 			sx={{
@@ -20,7 +30,7 @@ export const App = () => {
 		>
 			<RegForm />
 			<Divider sx={{color: 'gray'}}> or </Divider>
-			<AuthForm setIsAuth={setIsAuth} />
+			<AuthForm setIsAuth={handleAuth} />
 		</Box>
 	);
 };
