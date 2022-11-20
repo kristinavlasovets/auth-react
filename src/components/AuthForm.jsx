@@ -1,9 +1,10 @@
 import {React, useState} from 'react';
-import {TextField, Button, Box} from '@mui/material';
+import {TextField, Button, Box, Alert} from '@mui/material';
 
 export const AuthForm = ({setIsAuth}) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [message, setMessage] = useState('');
 
 	const signUsers = async () => {
 		const response = await fetch('http://localhost:5000/auth/authentication', {
@@ -12,9 +13,12 @@ export const AuthForm = ({setIsAuth}) => {
 			body: JSON.stringify({email, password}),
 		});
 		const result = await response.json();
-		setIsAuth((prev) => (prev = true));
-		localStorage.setItem('token', result.token);
-		console.log(result);
+		if (result.token) {
+			setIsAuth((prev) => (prev = true));
+			localStorage.setItem('token', result.token);
+		}
+
+		setMessage(result.message);
 	};
 
 	return (
@@ -36,6 +40,7 @@ export const AuthForm = ({setIsAuth}) => {
 				label="Password"
 				variant="standard"
 			/>
+			{message && <Alert sx={{mt: '20px'}}>{message}</Alert>}
 			<Button
 				onClick={signUsers}
 				sx={{width: '150px', margin: '30px auto'}}

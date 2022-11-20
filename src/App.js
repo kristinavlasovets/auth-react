@@ -14,6 +14,8 @@ export const App = () => {
 	useEffect(() => {
 		if (localStorage.getItem('token')) {
 			setIsAuth(true);
+		} else {
+			setIsAuth(false);
 		}
 	}, []);
 
