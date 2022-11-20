@@ -192,7 +192,6 @@ export const List = ({setIsAuth}) => {
 					bgcolor: 'gray',
 					color: 'white',
 					borderColor: 'white',
-					fontSize: '18px',
 					':hover': {
 						bgcolor: '#5769B1',
 						borderColor: 'white',

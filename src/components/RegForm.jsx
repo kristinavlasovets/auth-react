@@ -7,7 +7,6 @@ export const RegForm = () => {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState({});
 	const [message, setMessage] = useState('');
-
 	const postUsers = async () => {
 		const response = await fetch('http://localhost:5000/auth/registration', {
 			method: 'POST',

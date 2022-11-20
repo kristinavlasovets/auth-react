@@ -20,7 +20,7 @@ export const AuthForm = ({setIsAuth}) => {
 		localStorage.setItem('id', result.id);
 		setMessage(result.message);
 	};
-	const clearRegForm = () => {
+	const clearAuthForm = () => {
 		setEmail('');
 		setPassword('');
 	};
@@ -53,7 +53,7 @@ export const AuthForm = ({setIsAuth}) => {
 			<Button
 				onClick={() => {
 					signUsers();
-					clearRegForm();
+					clearAuthForm();
 				}}
 				sx={{
 					width: '115px',
