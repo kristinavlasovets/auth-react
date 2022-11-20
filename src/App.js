@@ -24,14 +24,22 @@ export const App = () => {
 	) : (
 		<Box
 			sx={{
-				m: '15vh auto',
+				m: '10vh auto',
+				p: '70px',
+				borderRadius: '10px',
 				width: '350px',
 				display: 'flex',
 				flexDirection: 'column',
+				boxShadow: 3,
+				':hover': {
+					boxShadow: 0,
+				},
 			}}
 		>
 			<RegForm />
-			<Divider sx={{color: 'gray'}}>Already have an account?</Divider>
+			<Divider sx={{color: 'gray', fontFamily: 'default', fontWeight: 'light'}}>
+				Already have an account?
+			</Divider>
 			<AuthForm setIsAuth={handleAuth} />
 		</Box>
 	);

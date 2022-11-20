@@ -31,7 +31,7 @@ export const List = ({setIsAuth}) => {
 			method: 'DELETE',
 		});
 		const result = await response.json();
-		setList((prev) => prev.filter((item) => item._id !== authUserId));
+		setList((prev) => prev.filter((user) => user._id !== id));
 		return result;
 	};
 	const blockUser = async (id) => {
@@ -145,9 +145,9 @@ export const List = ({setIsAuth}) => {
 					onClick={handleBlockAll}
 					sx={{
 						padding: '10px 20px 10px',
-						color: 'pink',
+						color: '#5769B1',
 						fontSize: '18px',
-						borderColor: 'pink',
+						borderColor: '#5769B1',
 						':hover': {
 							bgcolor: 'gray',
 							color: 'white',
@@ -162,7 +162,7 @@ export const List = ({setIsAuth}) => {
 				</Button>
 				<PersonAddAlt1Icon
 					onClick={handleUnblockAll}
-					sx={{color: 'pink', cursor: 'pointer'}}
+					sx={{color: '#5769B1', cursor: 'pointer'}}
 					fontSize="large"
 				/>
 				<PersonOffIcon
@@ -187,14 +187,16 @@ export const List = ({setIsAuth}) => {
 			<Button
 				onClick={logOut}
 				sx={{
-					m: '5vh auto',
-					color: 'pink',
+					m: '1vh auto',
 					fontSize: '18px',
-					borderColor: 'pink',
+					bgcolor: 'gray',
+					color: 'white',
+					borderColor: 'white',
+					fontSize: '18px',
 					':hover': {
-						bgcolor: 'gray',
-						color: 'white',
+						bgcolor: '#5769B1',
 						borderColor: 'white',
+						color: '#EFF67C',
 					},
 				}}
 				variant="outlined"

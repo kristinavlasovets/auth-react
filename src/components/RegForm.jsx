@@ -23,6 +23,11 @@ export const RegForm = () => {
 			return result.errors;
 		}
 	};
+	const clearRegForm = () => {
+		setUsername('');
+		setEmail('');
+		setPassword('');
+	};
 	return (
 		<Box
 			sx={{
@@ -33,21 +38,27 @@ export const RegForm = () => {
 		>
 			<TextField
 				onChange={(e) => setUsername(e.target.value)}
+				value={username}
 				type="text"
 				label="Username"
 				variant="standard"
+				color="action"
 			/>
 			<TextField
-				type="email"
 				onChange={(e) => setEmail(e.target.value)}
+				value={email}
+				type="email"
 				label="Email"
 				variant="standard"
+				color="action"
 			/>
 			<TextField
-				type="password"
 				onChange={(e) => setPassword(e.target.value)}
+				value={password}
+				type="password"
 				label="Password"
 				variant="standard"
+				color="action"
 			/>
 			{message && <Alert sx={{mt: '20px'}}>{message}</Alert>}
 			{error &&
@@ -57,8 +68,22 @@ export const RegForm = () => {
 					</Alert>
 				))}
 			<Button
-				onClick={postUsers}
-				sx={{width: '150px', margin: '30px auto', backgroundColor: '#12243F'}}
+				onClick={() => {
+					postUsers();
+					clearRegForm();
+				}}
+				sx={{
+					width: '110px',
+					margin: '30px auto',
+					backgroundColor: '#5769B1',
+					color: '#EFF67C',
+					fontSize: '18px',
+					':hover': {
+						bgcolor: 'gray',
+						color: 'white',
+						borderColor: 'white',
+					},
+				}}
 				variant="contained"
 			>
 				Enlist

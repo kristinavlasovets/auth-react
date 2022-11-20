@@ -20,6 +20,10 @@ export const AuthForm = ({setIsAuth}) => {
 		localStorage.setItem('id', result.id);
 		setMessage(result.message);
 	};
+	const clearRegForm = () => {
+		setEmail('');
+		setPassword('');
+	};
 
 	return (
 		<Box
@@ -31,19 +35,38 @@ export const AuthForm = ({setIsAuth}) => {
 		>
 			<TextField
 				onChange={(e) => setEmail(e.target.value)}
+				value={email}
+				type="email"
 				label="Email"
 				variant="standard"
+				color="action"
 			/>
 			<TextField
 				onChange={(e) => setPassword(e.target.value)}
+				value={password}
 				type="password"
 				label="Password"
 				variant="standard"
+				color="action"
 			/>
 			{message && <Alert sx={{mt: '20px'}}>{message}</Alert>}
 			<Button
-				onClick={signUsers}
-				sx={{width: '150px', margin: '30px auto', backgroundColor: '#DA5A52'}}
+				onClick={() => {
+					signUsers();
+					clearRegForm();
+				}}
+				sx={{
+					width: '115px',
+					margin: '30px auto',
+					backgroundColor: '#EFF67C',
+					color: '#5769B1',
+					fontSize: '18px',
+					':hover': {
+						bgcolor: 'gray',
+						color: 'white',
+						borderColor: 'white',
+					},
+				}}
 				variant="contained"
 			>
 				Sign in
