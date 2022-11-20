@@ -1,5 +1,5 @@
 import {React, useState, useEffect} from 'react';
-import {Box, Button, Checkbox} from '@mui/material';
+import {Box, Button} from '@mui/material';
 import {DataGrid} from '@mui/x-data-grid';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
@@ -9,9 +9,12 @@ export const List = ({setIsAuth}) => {
 	const [list, setList] = useState([]);
 	const [arrIds, setArrIds] = useState([]);
 
+	const authUserId = localStorage.getItem('id');
+
 	const logOut = () => {
 		setIsAuth();
 		localStorage.removeItem('token');
+		localStorage.removeItem('id');
 	};
 
 	const getData = async () => {
@@ -21,15 +24,58 @@ export const List = ({setIsAuth}) => {
 	};
 
 	const deleteUser = async (id) => {
+		if (authUserId === id) {
+			logOut();
+		}
 		const response = await fetch(`http://localhost:5000/auth/users/${id}`, {
 			method: 'DELETE',
 		});
 		const result = await response.json();
+		setList((prev) => prev.filter((item) => item._id !== authUserId));
+		return result;
+	};
+	const blockUser = async (id) => {
+		if (authUserId === id) {
+			logOut();
+		}
+		const response = await fetch(
+			`http://localhost:5000/auth/users/block/${id}`,
+			{
+				method: 'PATCH',
+			}
+		);
+		const result = await response.json();
+		setList(
+			list.map((user) =>
+				user._id === id ? {...user, status: 'blocked'} : user
+			)
+		);
+		return result;
+	};
+	const unblockUser = async (id) => {
+		const response = await fetch(
+			`http://localhost:5000/auth/users/unblock/${id}`,
+			{
+				method: 'PATCH',
+			}
+		);
+		const result = await response.json();
+		setList(
+			list.map((user) =>
+				user._id === id ? {...user, status: 'registered'} : user
+			)
+		);
 		return result;
 	};
 
 	const handleDeleteAll = () => {
 		arrIds.forEach((id) => deleteUser(id));
+	};
+	const handleBlockAll = () => {
+		arrIds.forEach((id) => blockUser(id));
+	};
+	const handleUnblockAll = () => {
+		arrIds.forEach((id) => unblockUser(id));
 	};
 
 	useEffect(() => {
@@ -96,6 +142,7 @@ export const List = ({setIsAuth}) => {
 				}}
 			>
 				<Button
+					onClick={handleBlockAll}
 					sx={{
 						padding: '10px 20px 10px',
 						color: 'pink',
@@ -113,8 +160,13 @@ export const List = ({setIsAuth}) => {
 				>
 					Block
 				</Button>
-				<PersonAddAlt1Icon sx={{color: 'pink'}} fontSize="large" />
+				<PersonAddAlt1Icon
+					onClick={handleUnblockAll}
+					sx={{color: 'pink', cursor: 'pointer'}}
+					fontSize="large"
+				/>
 				<PersonOffIcon
+					sx={{cursor: 'pointer'}}
 					onClick={handleDeleteAll}
 					color="action"
 					fontSize="large"

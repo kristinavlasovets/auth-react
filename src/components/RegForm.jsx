@@ -58,7 +58,7 @@ export const RegForm = () => {
 				))}
 			<Button
 				onClick={postUsers}
-				sx={{width: '150px', margin: '30px auto'}}
+				sx={{width: '150px', margin: '30px auto', backgroundColor: '#12243F'}}
 				variant="contained"
 			>
 				Enlist

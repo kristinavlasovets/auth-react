@@ -31,7 +31,7 @@ export const App = () => {
 			}}
 		>
 			<RegForm />
-			<Divider sx={{color: 'gray'}}> or </Divider>
+			<Divider sx={{color: 'gray'}}>Already have an account?</Divider>
 			<AuthForm setIsAuth={handleAuth} />
 		</Box>
 	);

@@ -17,7 +17,7 @@ export const AuthForm = ({setIsAuth}) => {
 			setIsAuth((prev) => (prev = true));
 			localStorage.setItem('token', result.token);
 		}
-
+		localStorage.setItem('id', result.id);
 		setMessage(result.message);
 	};
 
@@ -43,7 +43,7 @@ export const AuthForm = ({setIsAuth}) => {
 			{message && <Alert sx={{mt: '20px'}}>{message}</Alert>}
 			<Button
 				onClick={signUsers}
-				sx={{width: '150px', margin: '30px auto'}}
+				sx={{width: '150px', margin: '30px auto', backgroundColor: '#DA5A52'}}
 				variant="contained"
 			>
 				Sign in
