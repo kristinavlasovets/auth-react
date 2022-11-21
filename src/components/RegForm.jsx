@@ -8,7 +8,7 @@ export const RegForm = () => {
 	const [error, setError] = useState({});
 	const [message, setMessage] = useState('');
 	const postUsers = async () => {
-		const response = await fetch('http://localhost:5000/auth/registration', {
+		const response = await fetch('https://authentication.up.railway.app/auth/registration', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({username, email, password}),

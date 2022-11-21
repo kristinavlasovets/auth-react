@@ -18,7 +18,7 @@ export const List = ({setIsAuth}) => {
 	};
 
 	const getData = async () => {
-		const response = await fetch('http://localhost:5000/auth/users');
+		const response = await fetch('https://authentication.up.railway.app/auth/users');
 		const result = await response.json();
 		return result;
 	};
@@ -27,7 +27,7 @@ export const List = ({setIsAuth}) => {
 		if (authUserId === id) {
 			logOut();
 		}
-		const response = await fetch(`http://localhost:5000/auth/users/${id}`, {
+		const response = await fetch(`https://authentication.up.railway.app/auth/users/${id}`, {
 			method: 'DELETE',
 		});
 		const result = await response.json();
@@ -39,7 +39,7 @@ export const List = ({setIsAuth}) => {
 			logOut();
 		}
 		const response = await fetch(
-			`http://localhost:5000/auth/users/block/${id}`,
+			`https://authentication.up.railway.app/auth/users/block/${id}`,
 			{
 				method: 'PATCH',
 			}
@@ -54,7 +54,7 @@ export const List = ({setIsAuth}) => {
 	};
 	const unblockUser = async (id) => {
 		const response = await fetch(
-			`http://localhost:5000/auth/users/unblock/${id}`,
+			`https://authentication.up.railway.app/auth/users/unblock/${id}`,
 			{
 				method: 'PATCH',
 			}

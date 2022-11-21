@@ -7,7 +7,7 @@ export const AuthForm = ({setIsAuth}) => {
 	const [message, setMessage] = useState('');
 
 	const signUsers = async () => {
-		const response = await fetch('http://localhost:5000/auth/authentication', {
+		const response = await fetch('https://authentication.up.railway.app/auth/authentication', {
 			method: 'POST',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({email, password}),
